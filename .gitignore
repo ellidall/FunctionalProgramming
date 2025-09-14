@@ -1,0 +1,15 @@
+# Backup files
+*.rkt~
+*.rkt.bak
+*.backup
+
+# Temporary files
+*~
+*.tmp
+*.temp
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
