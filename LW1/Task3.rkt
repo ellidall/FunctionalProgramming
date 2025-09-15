@@ -147,3 +147,42 @@
 
 
 ;7
+(define first-digit-encoding
+  '((0 L L L L L L)
+    (1 L L G L G G)
+    (2 L L G G L G)
+    (3 L L G G G L)
+    (4 L G L L G G)
+    (5 L G G L L G)
+    (6 L G G G L L)
+    (7 L G L G L G)
+    (8 L G L G G L)
+    (9 L G G L G L)))
+
+(define (bar-code-EAN-13 digits)
+  (if (not (= (length digits) 13))
+      (error "EAN-13 должен содержать ровно 13 цифр")
+      (let* ((first-digit (car digits))
+             (structure (assoc first-digit first-digit-encoding))
+             (code-types (cdr structure))
+             (left-digits (take (cdr digits) 6))
+             (right-digits (drop digits 7))
+             (left-codes (apply append
+                                (map (lambda (code-type digit)
+                                       (cond
+                                         [(equal? code-type 'L) (l-code digit)]
+                                         [(equal? code-type 'G) (g-code digit)]))
+                                     code-types
+                                     left-digits)))
+             (right-codes (apply append (map r-code right-digits)))
+             (guard-pattern '(0 1 0 1 0))
+             (guard (draw-bars guard-pattern 2 110))
+             (left-part (draw-bars left-codes 2 100))
+             (right-part (draw-bars right-codes 2 100)))
+        (ht-append guard left-part guard right-part guard))))
+
+(define ean13-result (bar-code-EAN-13 '(1 2 3 4 5 6 7 8 9 0 1 2 3)))
+
+(slide
+ (t "Штрихкод EAN-13")
+ ean13-result)
