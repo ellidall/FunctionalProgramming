@@ -9,7 +9,6 @@
     (cons id value)))
 (check-decimal-digits '(1 4 2 7 32 9 88 2 0 one))
 
-
 ;2
 (define (fib-like? lst)
   (if (< (length lst) 3)
@@ -23,7 +22,6 @@
 (fib-like? '(1 1 2 3 5 8 13 21))
 (fib-like? '(2 1 3 4 7 11 18 29 47))
 
-
 ;3
 (define (next-fib a b)
   (stream-cons a (next-fib b (+ a b))))
@@ -33,11 +31,10 @@
            [f in-fib])
   f)
 
-
 ;4
 (define (next-feb x y)
-    (yield x)
-    (next-feb y (+ x y)))
+  (yield x)
+  (next-feb y (+ x y)))
 (define gen-fib (generator () (next-feb 0 1)))
 
 (gen-fib)
