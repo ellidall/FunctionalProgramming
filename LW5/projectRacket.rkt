@@ -207,42 +207,6 @@
 
 (struct property (random-value predicate))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ; (displayln "----------------------Упражнение 22----------------------------")
 ; (define random-triple-of-reals
 ;   (random-cons (random-real 0 1) (random-cons (random-real 0 1) (random-real 0 1))))
