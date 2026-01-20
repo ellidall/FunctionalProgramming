@@ -109,6 +109,7 @@ t1 f xs = map f xs
 -- t2 :: (a -> Bool) -> [a] -> [a]
 -- Бесконечно много реализаций, но основные:
 t2_id, t2_empty, t2_filter, t2_filterNot :: (a -> Bool) -> [a] -> [a]
-t2_id        _ xs = xs                     -- ничего не фильтровать
-t2_empty     _ _  = []                     -- всегда пустой
-t2_filter    p xs = filter
+t2_id        _ xs = xs                   
+t2_empty     _ _  = []                     
+t2_filter    p xs = filter p xs
+t2_filterNot p xs = filter (not . p) xs

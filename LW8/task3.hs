@@ -15,6 +15,8 @@ parseInt s =
     strToInt str = foldl (\acc c -> acc * 10 + digitToInt c) 0 str
     digitToInt c = fromEnum c - fromEnum '0'
 
+--строгая лнвая слибо ленивая правая    
+
 -- 2. Перевести список строк в список чисел
 parseInts :: [String] -> Result [Int]
 parseInts [] = Success []
